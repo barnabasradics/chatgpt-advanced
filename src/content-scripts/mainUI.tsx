@@ -84,7 +84,7 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
             let results: SearchResult[]               
 
                 const searchRequest: SearchRequest = {
-                    q,
+                    query,
                     timerange: userConfig.timePeriod,
                     region: userConfig.region,
                 };
@@ -92,7 +92,7 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
                 results = await webSearch(searchRequest, userConfig.numWebResults)
             
 
-            await pasteWebResultsToTextArea(results, q)
+            await pasteWebResultsToTextArea(results, query)
             
             if(userConfig.sendEnterAfterQuery){
             pressEnter()
