@@ -10,7 +10,8 @@ const defaultConfig = {
     timePeriod: '',
     language: getSystemLanguage(),
     promptUUID: 'default',
-    sendEnterAfterQuery: true,
+    sendEnterAfterQuery: false,
+    multiQueries: true,
 }
 
 export type UserConfig = typeof defaultConfig
