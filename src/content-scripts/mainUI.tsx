@@ -83,8 +83,6 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
             
         try {
             let results: SearchResult[]               
-                
-                results = await apiExtractText(url)
 
                 const searchRequest: SearchRequest = {
                     q,
