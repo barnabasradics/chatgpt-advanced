@@ -79,19 +79,12 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
           return new Promise(resolve => setTimeout(resolve, ms));
         }
         
-        //textarea.value = ""
-        
-        
         async function executeQuery(q: string): Promise<void> {
             
         try {
-            let results: SearchResult[]
-            const pageCommandMatch = q.match(/page:(\S+)/)
-            if (pageCommandMatch) {
+            let results: SearchResult[]               
                 
-                const url = pageCommandMatch[1]
                 results = await apiExtractText(url)
-            } else {
 
                 const searchRequest: SearchRequest = {
                     q,
@@ -100,7 +93,7 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
                 };
 
                 results = await webSearch(searchRequest, userConfig.numWebResults)
-            }
+            
 
             await pasteWebResultsToTextArea(results, q)
             
