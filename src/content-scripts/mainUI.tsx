@@ -82,7 +82,10 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
             }
 
             await pasteWebResultsToTextArea(results, query)
+            
+            if(userConfig.sendEnterAfterQuery){
             pressEnter()
+            }
             isProcessing = false
 
         } catch (error) {
