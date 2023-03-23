@@ -50,7 +50,6 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
         const isPartialCommand = slashCommands.some(command => command.name.startsWith(query) && query.length <= command.name.length)
         if (isPartialCommand) return
 
-
         const userConfig = await getUserConfig()
 
         isProcessing = true
@@ -62,12 +61,31 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
             return
         }
 
+        
+        if (userConfig.multiQueries) {
+          const queries = query.split(',,');
+          for (const q of queries) {
+            await executeQuery(q);
+            await delay(1000);
+          }
+        } else {
+          await executeQuery(query);
+        }
+        
+        async function delay(ms: number) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+        }
+        
         textarea.value = ""
-
+        
+        
+        async function executeQuery(q: string): Promise<void> {
+            
         try {
             let results: SearchResult[]
             const pageCommandMatch = query.match(/page:(\S+)/)
             if (pageCommandMatch) {
+                
                 const url = pageCommandMatch[1]
                 results = await apiExtractText(url)
             } else {
@@ -86,12 +104,15 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
             if(userConfig.sendEnterAfterQuery){
             pressEnter()
             }
+        
             isProcessing = false
 
         } catch (error) {
             isProcessing = false
             showErrorMessage(error)
-        }
+        }}
+    
+    
     }
 }
 
