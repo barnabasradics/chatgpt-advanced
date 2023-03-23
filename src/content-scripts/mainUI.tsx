@@ -63,22 +63,22 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
 
         
         if (userConfig.multiQueries && typeof query === "string" && query.length > 0) {
-          const queries = query.split(",,").filter(element => element !== "")
-            await executeQuery(query.trim())
+          //const queries = query.split(",,").filter(element => element !== "")
+            //await executeQuery(query.trim())
             //await delay(1000)
           
             
           isProcessing = false
         } else {
-          await executeQuery(query)
+          //await executeQuery(query)
           isProcessing = false  
         }
         
-        async function delay(ms: number) {
+        /*async function delay(ms: number) {
           return new Promise(resolve => setTimeout(resolve, ms))
-        }
+        }*/
         
-        async function executeQuery(q: string): Promise<void> {
+        
             
         try {
             let results: SearchResult[]               
@@ -101,7 +101,7 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
         } catch (error) {
             isProcessing = false
             showErrorMessage(error)
-        }}
+        }
     
     
     }
