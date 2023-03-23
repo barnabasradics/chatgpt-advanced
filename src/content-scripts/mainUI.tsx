@@ -76,7 +76,7 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
           return new Promise(resolve => setTimeout(resolve, ms));
         }
         
-        textarea.value = ""
+        //textarea.value = ""
         
         
         async function executeQuery(q: string): Promise<void> {
