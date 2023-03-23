@@ -11,8 +11,8 @@ const defaultConfig = {
     language: getSystemLanguage(),
     promptUUID: 'default',
     sendEnterAfterQuery: false,
-    multiQueries: true,
-}
+    multiQueries: true
+};
 
 export type UserConfig = typeof defaultConfig
 
