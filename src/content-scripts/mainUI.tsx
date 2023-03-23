@@ -62,14 +62,17 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
         }
 
         
-        if (userConfig.multiQueries) {
-          const queries = query.split(',,');
+        if (userConfig.multiQueries && typeof query === "string" && query.length > 0) {
+          const queries = query.split(",,").filter(element => element !== "");
           for (const q of queries) {
-            await executeQuery(q);
+            await executeQuery(q.trim());
             await delay(1000);
           }
+            
+          isProcessing = false
         } else {
           await executeQuery(query);
+          isProcessing = false  
         }
         
         async function delay(ms: number) {
@@ -105,8 +108,6 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
             pressEnter()
             }
         
-            isProcessing = false
-
         } catch (error) {
             isProcessing = false
             showErrorMessage(error)
