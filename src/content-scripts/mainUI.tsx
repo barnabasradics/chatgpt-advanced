@@ -83,7 +83,7 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
             
         try {
             let results: SearchResult[]
-            const pageCommandMatch = query.match(/page:(\S+)/)
+            const pageCommandMatch = q.match(/page:(\S+)/)
             if (pageCommandMatch) {
                 
                 const url = pageCommandMatch[1]
@@ -91,7 +91,7 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
             } else {
 
                 const searchRequest: SearchRequest = {
-                    query,
+                    q,
                     timerange: userConfig.timePeriod,
                     region: userConfig.region,
                 };
@@ -99,7 +99,7 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
                 results = await webSearch(searchRequest, userConfig.numWebResults)
             }
 
-            await pasteWebResultsToTextArea(results, query)
+            await pasteWebResultsToTextArea(results, q)
             
             if(userConfig.sendEnterAfterQuery){
             pressEnter()
