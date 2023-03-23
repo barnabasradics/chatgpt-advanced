@@ -63,20 +63,20 @@ async function onSubmit(event: MouseEvent | KeyboardEvent) {
 
         
         if (userConfig.multiQueries && typeof query === "string" && query.length > 0) {
-          const queries = query.split(",,").filter(element => element !== "");
+          const queries = query.split(",,").filter(element => element !== "")
           for (const q of queries) {
-            await executeQuery(q.trim());
-            await delay(1000);
+            await executeQuery(q.trim())
+            await delay(1000)
           }
             
           isProcessing = false
         } else {
-          await executeQuery(query);
+          await executeQuery(query)
           isProcessing = false  
         }
         
         async function delay(ms: number) {
-          return new Promise(resolve => setTimeout(resolve, ms));
+          return new Promise(resolve => setTimeout(resolve, ms))
         }
         
         async function executeQuery(q: string): Promise<void> {
